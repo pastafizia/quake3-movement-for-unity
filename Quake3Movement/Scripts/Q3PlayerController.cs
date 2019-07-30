@@ -14,7 +14,7 @@ namespace Q3Movement
     /// First-person Mouse look is handled by the CameraControl script.
     /// </summary>
     [RequireComponent(typeof(CharacterController))]
-    public class Q3PlayerMovement : MonoBehaviour
+    public class Q3PlayerController : MonoBehaviour
     {
         [System.Serializable]
         public class MovementSettings
@@ -31,6 +31,11 @@ namespace Q3Movement
             }
         }
 
+        [Header("Aiming")]
+        [SerializeField] private Camera m_Camera;
+        [SerializeField] private MouseLook m_MouseLook = new MouseLook();
+
+        [Header("Movement")]
         [SerializeField] private float m_Friction = 6;
         [SerializeField] private float m_Gravity = 20;
         [SerializeField] private float m_JumpForce = 8;
@@ -38,9 +43,6 @@ namespace Q3Movement
         [SerializeField] private bool m_AutoBunnyHop = false;
         [Tooltip("How precise air control is")]
         [SerializeField] private float m_AirControl = 0.3f;
-
-        // Movement settings.
-
         [SerializeField]
         private MovementSettings m_GroundSettings = new MovementSettings(7, 14, 10);
         [SerializeField]
@@ -66,6 +68,7 @@ namespace Q3Movement
         // Player commands, stores wish commands that the player asks for (Forward, back, jump, etc)
         private Movement InputMove;
         private Transform m_Tran;
+        private Transform m_CamTran;
 
         private void Start()
         {
@@ -77,18 +80,18 @@ namespace Q3Movement
 
             m_Character = GetComponent<CharacterController>();
             InputMove = new Movement();
+
+            if (!m_Camera)
+                m_Camera = Camera.main;
+
+            m_CamTran = m_Camera.transform;
+
+            m_MouseLook.Init(m_Tran, m_CamTran);
         }
 
         private void Update()
         {
-            // Ensure that the cursor is locked.
-            if (Cursor.lockState != CursorLockMode.Locked)
-            {
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
-            }
+            m_MouseLook.UpdateCursorLock();
 
             QueueJump();
 
@@ -102,7 +105,10 @@ namespace Q3Movement
                 AirMove();
             }
 
-            // Move the CharacterController.
+            // Rotate the character and camera.
+            m_MouseLook.LookRotation(m_Tran, m_CamTran);
+
+            // Move the character.
             m_Character.Move(playerVelocity * Time.deltaTime);
         }
 

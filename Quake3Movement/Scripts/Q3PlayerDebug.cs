@@ -5,7 +5,7 @@ namespace Q3Movement
     /// <summary>
     /// This script is used to display real-time statistics to help with tweaking and debugging.
     /// </summary>
-    [RequireComponent(typeof(Q3PlayerMovement))]
+    [RequireComponent(typeof(Q3PlayerController))]
     public class Q3PlayerDebug : MonoBehaviour
     {
         [Tooltip("How many times per second to update stats")]
@@ -15,11 +15,11 @@ namespace Q3Movement
         private float m_Time = 0;
         private float m_FPS = 0;
         private float m_TopSpeed = 0;
-        private Q3PlayerMovement m_Player;
+        private Q3PlayerController m_Player;
 
         private void Start()
         {
-            m_Player = GetComponent<Q3PlayerMovement>();
+            m_Player = GetComponent<Q3PlayerController>();
         }
 
         private void LateUpdate()

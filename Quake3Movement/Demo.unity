@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 608072923}
   - component: {fileID: 608072922}
   - component: {fileID: 608072921}
-  - component: {fileID: 608072924}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -213,19 +212,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &608072924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 608072919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfb5ea10ee425a4418bdda6076c0b687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MouseSensitivity: {x: 30, y: 30}
 --- !u!1 &697663741
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a75dc49fa305c4d87d2854fe203452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsDisplayRate: 4
+  m_RefreshRate: 4
 --- !u!114 &1441166908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +348,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689c7b4cc1dbae54cbfa41c0c84fb174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Camera: {fileID: 608072923}
+  m_MouseLook:
+    m_XSensitivity: 2
+    m_YSensitivity: 2
+    m_ClampVerticalRotation: 1
+    m_MinimumX: -90
+    m_MaximumX: 90
+    m_Smooth: 0
+    m_SmoothTime: 5
+    m_LockCursor: 1
   m_Friction: 6
   m_Gravity: 20
   m_JumpForce: 8
