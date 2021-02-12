@@ -10,4 +10,4 @@ UPS (units per second) is measured in Unity units (meters) and not idTech units.
 Default script values emulate Quake III Arena movement with CPM(A) physics.
 
 ## Demo Assets
-Demo scene meshes were built with ProBuilder 4.4 so GameObjects will have missing script components unless ProBuilder package is installed in your project. But these missing components can be safely removed if you don't have ProBuilder installed.
+Demo scene meshes were built with ProBuilder 4.4 so this package must be installed in your project for demo scene to function.
